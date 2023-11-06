@@ -24,4 +24,6 @@ urlpatterns = [
     path('', views.homepage, name='home'),
     path('new_timer/', views.new_timer, name='new_timer'),
     path('start_timer/<int:timer_id>/', views.start_timer, name='start_timer'),
+    path('new_timer2/', views.new_timer2, name='new_timer2'),
+    path('start_timer2/<int:timer_id>/', views.start_timer2, name='start_timer2'),
 ]

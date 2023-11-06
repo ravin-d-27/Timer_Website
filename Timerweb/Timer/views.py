@@ -22,3 +22,18 @@ def new_timer(request):
     else:
         form = TimerForm()
     return render(request, 'Timer/new_timer.html', {'form': form})
+
+
+def start_timer2(request, timer_id):
+    timer = Timer.objects.get(pk=timer_id)
+    return render(request, 'Timer/start_time2.html', {'timer': timer})
+
+def new_timer2(request):
+    if request.method == 'POST':
+        form = TimerForm(request.POST)
+        if form.is_valid():
+            timer = form.save()
+            return redirect('start_timer2', timer_id=timer.id)
+    else:
+        form = TimerForm()
+    return render(request, 'Timer/new_timer2.html', {'form': form})

@@ -55,15 +55,20 @@
 <body>
 
 
-      <h1>Create a New Timer</h1>
+  <div class="container" align="center">
 
-      
-      <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Start Timer</button>
-      </form>
+    <h1>Enter the Details to Proceed</h1>
+<br>
+  
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Start Timer</button>
+    </form>
 
+
+
+</div>
 
 </body>
 
