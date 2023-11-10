@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path
 
 from Timer import views
+from accounts import views as acviews
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +27,7 @@ urlpatterns = [
     path('start_timer/<int:timer_id>/', views.start_timer, name='start_timer'),
     path('new_timer2/', views.new_timer2, name='new_timer2'),
     path('start_timer2/<int:timer_id>/', views.start_timer2, name='start_timer2'),
+    path('login/', acviews.login, name='login'),
+    path('signup/', acviews.signup, name='signup'),
+    path('logout/', acviews.logout, name='logout'),
 ]

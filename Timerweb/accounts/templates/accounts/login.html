@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<div class="d-flex flex-column auth justify-content-center">
+  <div class="center text-center">
+  </div>
+
+  <div class="auth-form mt-3">
+    {% if error %}
+    <div class="alert alert-danger" role="alert">
+      {{ error }}
+    </div>
+    {% endif %}
+    <h3 class="text-center">Log in to Timer Website</h3>
+    <br>
+<div class="containers">
+    <div class="box" align="center">
+
+        <form method="POST" action="{% url 'login' %}">
+            <br>
+          {% csrf_token %}
+          <div class="mb-3" align="center">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" name="username" id="username" required>
+          </div>
+          <div class="mb-3" align="center">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" name="password" id="password" required>
+          </div>
+          <div align="center">
+            <button class="btn btn-primary" type="submit">Log in</button>
+          </div>
+          
+        </form>
+      </div>    
+
+
+</div>
+    
+    </div>
+      <h6 class="text-center mt-3">Don't have an account? <a href="{% url 'signup' %}">Signup!</a></h6>
+
+</div>
+{% endblock %}

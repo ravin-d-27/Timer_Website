@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<div class="d-flex flex-column auth justify-content-center">
+  <div class="center">
+  </div>
+
+  <div class="auth-form">
+    {% if errors %}
+    <div class="alert alert-danger d-flex align-items-center" role="alert">
+      <ul style="margin: 0;">
+          {% for error_message in errors %}
+            <li>{{ error_message }}</li>
+          {% endfor %}
+      </ul> 
+    </div>
+    {% endif %}
+
+    <br>
+    <h3 class='text-center'>Sign up to Timer Website</h1>
+<br>
+    <div class="containers">
+
+        <div class="box" align="center">
+
+                <form method="POST" action="{% url 'signup' %}">
+                {% csrf_token %}
+              
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">Username</label>
+                  <input type="text" name="username" id="exampleFormControlInput1" required/>
+                </div>
+              
+                <div class="mb-3">
+                  <label for="exampleFormControlTextarea1" class="form-label">Password</label>
+                  <input type="password" name="passwd" required/>
+                </div>
+            
+                <div class="mb-3">
+                  <label for="exampleFormControlTextarea1" class="form-label">Confirm Password</label>
+                  <input type="password" name="cpasswd" required/>
+                </div>
+                <input class='btn btn-primary' type='submit' value='Sign up!'>
+                  </form>
+              </div>
+
+            
+        </div>
+
+    </div>
+    
+    
+  
+  <h6 align='center'>Already Registered? <a href='{% url "login" %}'>Log in!</a></h6>
+
+</div>
+
+{% endblock %}
