@@ -22,13 +22,21 @@
       <h2>Prepared Speech Sessions</h2>
       <p>This option is for prepared speech sessions</p>
       <br>
+      {% if user.is_authenticated %}
       <a class="btn btn-primary" href="{% url 'new_timer2' %}">Let's Go!</a>
+      {% else %}
+      <a class="btn btn-primary" href="{% url 'login' %}">Let's Go!</a>
+      {% endif %}
     </div>
     <div class="box" align="center">
       <h2>Table Topics Sessions</h2>
       <p>This option is for Table Topics Sessions</p>
       <br>
+      {% if user.is_authenticated %}
       <a class="btn btn-primary" href="{% url 'new_timer' %}">Let's Go!</a>
+      {% else %}
+      <a class="btn btn-primary" href="{% url 'login' %}">Let's Go!</a>
+      {% endif %}
     </div>
   </div>
 
