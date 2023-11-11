@@ -7,14 +7,19 @@
 
 <div class="container" align="center">
 
+
     <h1>Enter the Details to Proceed</h1>
 <br>
-  
-    <form method="post">
+  <div class="containers">
+    <form method="post" class="box">
       {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">Start Timer</button>
+      <div class="mb-3"><br>
+        <label for="{{ form.name.id_for_label }}" >Name:<br></label>
+        <br>{{ form.name }}
+    </div>
+      <button type="submit" class="btn btn-primary">Start Timer</button>
     </form>
+  </div>
 
 
 
