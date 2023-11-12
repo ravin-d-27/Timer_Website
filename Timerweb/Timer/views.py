@@ -36,12 +36,18 @@ def new_timer(request):
 
 def start_timer2(request, timer_id):
     timer = Timer.objects.get(pk=timer_id)
+    userName = request.user.username
+    request.session[userName+'start_time'] = datetime.now().timestamp()
+
     return render(request, 'Timer/start_time2.html', {'timer': timer})
 
 def new_timer2(request):
+    userName = request.user.username
     if request.method == 'POST':
         form = TimerForm(request.POST)
         if form.is_valid():
+            name = form.cleaned_data['name']
+            request.session[userName+'name'] = name
             timer = form.save()
             return redirect('start_timer2', timer_id=timer.id)
     else:
