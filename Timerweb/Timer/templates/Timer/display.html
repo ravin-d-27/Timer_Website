@@ -14,11 +14,13 @@
         <tr>
             <th>Name</th>
             <th>Time</th>
+            <th>Type</th>
         </tr>
         {% for data in data_list %}
         <tr>
             <td>{{ data.1 }}</td>
             <td>{{ data.2 }}</td>
+            <td>{{ data.3 }}</td>
         </tr>
         {% endfor %}
     </table>

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div align="center">
+<br>
+<br>
+    <h3>Added the Data successfully</h3>
+<br>
+    <p>Name: {{name}}</p>
+    <p>Time Taken: {{elapsed_time}}</p>
+
+    <button id="submitButton" class = "btn btn-primary" onclick="returnStart()">Start Again!</button>
+    
+</div>
+
+<script>
+
+function returnStart()
+{
+    const done = document.getElementById('submitButton');
+    window.location.href = '/new_timer2/'
+}
+
+</script>
+
+
+{% endblock %}

@@ -78,7 +78,7 @@ def elapsed_time(request):
     }
 
     username = request.user.username
-    data = [username,name,format_time]
+    data = [username,name,format_time,"Table Topic Session"]
     file_path = 'D:/Codes/Projects/Timer_Website/Timerweb/Timer/Data_time/timer_data.csv'
 
     with open(file_path, 'a', newline='') as file:
@@ -90,6 +90,43 @@ def elapsed_time(request):
         del request.session[userName+'name']
 
     return render(request, 'Timer/elapsed_time.html', context)
+
+def elapsed_time2(request):
+    # Retrieve the start time from the session
+    userName = request.user.username
+    start_time = request.session.get(userName+'start_time')
+    name = request.session.get(userName+'name')
+    
+    if start_time is None:
+        # Handle the case when the timer hasn't started
+        return HttpResponse("Timer hasn't started!")
+
+    # Calculate the elapsed time
+    current_time = datetime.now().timestamp()
+    elapsed_time_seconds = int(current_time - start_time)
+
+    if userName+'start_time' in request.session:
+        del request.session[userName+'start_time']
+
+    format_time = "{} minutes and {} seconds".format(*divmod(elapsed_time_seconds-1,60))
+    context = {
+        'elapsed_time': format_time,
+        'name':name
+    }
+
+    username = request.user.username
+    data = [username,name,format_time,"Prepared Speech"]
+    file_path = 'D:/Codes/Projects/Timer_Website/Timerweb/Timer/Data_time/timer_data.csv'
+
+    with open(file_path, 'a', newline='') as file:
+        writer = csv.writer(file)
+        # Write the data
+        writer.writerow(data)
+
+    if userName+'name' in request.session:
+        del request.session[userName+'name']
+
+    return render(request, 'Timer/elapsed_time2.html', context)
 
 
 def display_people(request):
