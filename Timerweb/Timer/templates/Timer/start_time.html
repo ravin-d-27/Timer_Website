@@ -65,6 +65,7 @@
 <script>
   let timerInterval;
   let elapsedTime = 0;
+  let name = "{{ timer.name }}";
 
   function startTimer() {
     const timerElement = document.getElementById('timer');
@@ -115,6 +116,8 @@
     // Reset image
     imageElement.src = '';
     imageElement.style.display = 'none';
+
+    window.location.href = '/elapsed_time/';
   }
 
 
