@@ -31,4 +31,6 @@ urlpatterns = [
     path('signup/', acviews.signup, name='signup'),
     path('logout/', acviews.logout, name='logout'),
     path('elapsed_time/', views.elapsed_time, name='elapsed_time'),
+    path('display/', views.display_people, name='display'),
+    path('clear/', views.clear, name='clear'),
 ]

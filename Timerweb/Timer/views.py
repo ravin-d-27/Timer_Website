@@ -1,17 +1,17 @@
 from django.shortcuts import render, redirect
 from .forms import TimerForm
 from .models import Timer
-
-import csv
 from django.http import HttpResponse
 from datetime import datetime, timedelta
+from .forms import TimerForm
 
-# Create your views here.
+
+import csv
 
 def homepage(request):
     return render(request,'Timer/homepage.html')
 
-from .forms import TimerForm
+
 
 def start_timer(request, timer_id):
     timer = Timer.objects.get(pk=timer_id)
@@ -62,12 +62,14 @@ def elapsed_time(request):
     if 'start_time' in request.session:
         del request.session['start_time']
 
+    format_time = "{} minutes and {} seconds".format(*divmod(elapsed_time_seconds-1,60))
     context = {
-        'elapsed_time': elapsed_time_seconds-1,
+        'elapsed_time': format_time,
+        'name':name
     }
 
     username = request.user.username
-    data = [username,name,elapsed_time_seconds-1]
+    data = [username,name,format_time]
     file_path = 'D:/Codes/Projects/Timer_Website/Timerweb/Timer/Data_time/timer_data.csv'
 
     with open(file_path, 'a', newline='') as file:
@@ -79,3 +81,44 @@ def elapsed_time(request):
         del request.session['name']
 
     return render(request, 'Timer/elapsed_time.html', context)
+
+
+def display_people(request):
+
+    csv_file_path = 'D:/Codes/Projects/Timer_Website/Timerweb/Timer/Data_time/timer_data.csv'
+    data_list = []
+
+    user = request.user.username
+
+    with open(csv_file_path, 'r') as file:
+        csv_reader = csv.reader(file)
+        for row in csv_reader:
+            if row[0]==user:
+                data_list.append(row)
+            else:
+                pass
+        
+    if data_list==[]:
+        error = {'error':"There are no records"}
+        return render(request, 'Timer/display.html', error)
+    else:
+        context = {'data_list': data_list}
+        return render(request, 'Timer/display.html', context)
+
+def clear(request):
+    csv_file_path = 'D:/Codes/Projects/Timer_Website/Timerweb/Timer/Data_time/timer_data.csv'
+    user = request.user.username
+    # Read existing data from the CSV file
+    with open(csv_file_path, 'r') as file:
+        csv_reader = csv.reader(file)
+        data = [row for row in csv_reader if row[0] != user]
+
+    # Write the updated data (without the specified username) back to the CSV file
+    with open(csv_file_path, 'w', newline='') as file:
+        csv_writer = csv.writer(file)
+        csv_writer.writerows(data)
+
+    return redirect('home')
+
+if __name__ == '__main__':
+    display_people("hello")

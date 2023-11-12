@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div align="center" class="container">
+
+    <h1>Timer Data for {{ request.user.username }}</h1>
+    <br>
+    {% if error %}
+    <p>{{error}}</p>
+    
+    {% else %}
+<br>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Time</th>
+        </tr>
+        {% for data in data_list %}
+        <tr>
+            <td>{{ data.1 }}</td>
+            <td>{{ data.2 }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+<br>
+    <a class="btn btn-primary" href="{% url 'clear' %}">Clear this Table</a>
+    {% endif %}
+</div>
+
+{% endblock %}
