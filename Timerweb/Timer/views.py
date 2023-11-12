@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import TimerForm
 from .models import Timer
 from django.http import HttpResponse
-from datetime import datetime, timedelta
+from datetime import datetime
 from .forms import TimerForm
 
 
@@ -15,16 +15,18 @@ def homepage(request):
 
 def start_timer(request, timer_id):
     timer = Timer.objects.get(pk=timer_id)
-    request.session['start_time'] = datetime.now().timestamp()
+    userName = request.user.username
+    request.session[userName+'start_time'] = datetime.now().timestamp()
 
     return render(request, 'Timer/start_time.html', {'timer': timer})
 
 def new_timer(request):
+    userName = request.user.username
     if request.method == 'POST':
         form = TimerForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data['name']
-            request.session['name'] = name
+            request.session[userName+'name'] = name
             timer = form.save()
             return redirect('start_timer', timer_id=timer.id)
     else:
@@ -48,8 +50,9 @@ def new_timer2(request):
 
 def elapsed_time(request):
     # Retrieve the start time from the session
-    start_time = request.session.get('start_time')
-    name = request.session.get('name')
+    userName = request.user.username
+    start_time = request.session.get(userName+'start_time')
+    name = request.session.get(userName+'name')
     
     if start_time is None:
         # Handle the case when the timer hasn't started
@@ -59,8 +62,8 @@ def elapsed_time(request):
     current_time = datetime.now().timestamp()
     elapsed_time_seconds = int(current_time - start_time)
 
-    if 'start_time' in request.session:
-        del request.session['start_time']
+    if userName+'start_time' in request.session:
+        del request.session[userName+'start_time']
 
     format_time = "{} minutes and {} seconds".format(*divmod(elapsed_time_seconds-1,60))
     context = {
@@ -77,8 +80,8 @@ def elapsed_time(request):
         # Write the data
         writer.writerow(data)
 
-    if 'name' in request.session:
-        del request.session['name']
+    if userName+'name' in request.session:
+        del request.session[userName+'name']
 
     return render(request, 'Timer/elapsed_time.html', context)
 
