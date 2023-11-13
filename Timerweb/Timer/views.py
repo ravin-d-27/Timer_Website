@@ -4,13 +4,23 @@ from .models import Timer
 from django.http import HttpResponse
 from datetime import datetime
 from .forms import TimerForm
-
-
 import csv
 
-def homepage(request):
-    return render(request,'Timer/homepage.html')
 
+file_path = 'Timer/Data_time/timer_data.csv'
+
+def homepage(request):
+
+    userName = request.user.username
+
+    # Closing the unwanted sessions
+    if userName+'start_time' in request.session:
+        del request.session[userName+'start_time']
+
+    if userName+'name' in request.session:
+        del request.session[userName+'name']
+
+    return render(request,'Timer/homepage.html')
 
 
 def start_timer(request, timer_id):
@@ -79,7 +89,7 @@ def elapsed_time(request):
 
     username = request.user.username
     data = [username,name,format_time,"Table Topic Session"]
-    file_path = 'D:/Codes/Projects/Timer_Website/Timerweb/Timer/Data_time/timer_data.csv'
+    
 
     with open(file_path, 'a', newline='') as file:
         writer = csv.writer(file)
@@ -116,7 +126,7 @@ def elapsed_time2(request):
 
     username = request.user.username
     data = [username,name,format_time,"Prepared Speech"]
-    file_path = 'D:/Codes/Projects/Timer_Website/Timerweb/Timer/Data_time/timer_data.csv'
+    
 
     with open(file_path, 'a', newline='') as file:
         writer = csv.writer(file)
