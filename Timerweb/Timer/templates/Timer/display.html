@@ -25,7 +25,19 @@
         {% endfor %}
     </table>
 <br>
-    <a class="btn btn-primary" href="{% url 'clear' %}">Clear this Table</a>
+    <a class="btn btn-primary" href="#" id="clearButton">Clear this Table</a>
+    
+    <script>
+        document.getElementById('clearButton').addEventListener('click', function() {
+            var result = confirm("This will delete all records. Click OK to proceed.");
+            if (result) {
+                // If the user clicks "OK", redirect to the 'clear' URL
+                window.location.href = "{% url 'clear' %}";
+            }
+            // If the user clicks "Cancel", do nothing
+        });
+    </script>
+    
     {% endif %}
 </div>
 
