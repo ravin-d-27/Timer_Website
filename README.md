@@ -4,11 +4,12 @@ This website is designed to perform timer functionality for the sessions conduct
 
 ## Features
 
-- User Login and Signup functionalities
+- User Login and Signup functionalities.
 - Start and Stop timer functionality.
 - Display of elapsed time.
 - Alert notifications when certain time thresholds are reached.
-- Storing the elapsed time data for each user
+- Storing the elapsed time data for each user and displaying the same.
+- User can clear their data and they can add new timer values to it.
 
 ## Installation
 
