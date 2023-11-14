@@ -24,7 +24,7 @@
 
         <div class="box" align="center">
 
-                <form method="POST" action="{% url 'signup' %}">
+                <form method="POST" action="{% url 'signup' %}" onsubmit="return validateUsername()">
                 {% csrf_token %}
               
                 <div class="mb-3">
@@ -55,5 +55,22 @@
   <h6 align='center'>Already Registered? <a href='{% url "login" %}'>Log in!</a></h6>
 
 </div>
+
+<script>
+  function validateUsername() {
+    var usernameInput = document.getElementById('exampleFormControlInput1');
+    var username = usernameInput.value;
+
+    // Define a regular expression pattern for valid usernames
+    var usernamePattern = /^[a-zA-Z0-9_-]+$/;
+
+    if (!usernamePattern.test(username)) {
+      alert("Username should not contain special characters except for hyphen (-) or underscore (_).");
+      return false; // Prevent form submission
+    }
+
+    return true; // Allow form submission
+  }
+</script>
 
 {% endblock %}

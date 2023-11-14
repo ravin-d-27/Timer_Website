@@ -14,11 +14,11 @@
     {% endif %}
     <h3 class="text-center">Log in to Timer Website</h3>
     <br>
-<div class="containers">
-    <div class="box" align="center">
+    <div class="containers">
+      <div class="box" align="center">
 
         <form method="POST" action="{% url 'login' %}">
-            <br>
+          <br>
           {% csrf_token %}
           <div class="mb-3" align="center">
             <label for="username" class="form-label">Username</label>
@@ -31,15 +31,13 @@
           <div align="center">
             <button class="btn btn-primary" type="submit">Log in</button>
           </div>
-          
+
         </form>
-      </div>    
-
-
-</div>
-    
+      </div>
     </div>
-      <h6 class="text-center mt-3">Don't have an account? <a href="{% url 'signup' %}">Signup!</a></h6>
+  </div>
+  <h6 class="text-center mt-3">Don't have an account? <a href="{% url 'signup' %}">Signup!</a></h6>
+
 
 </div>
 {% endblock %}
