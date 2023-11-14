@@ -162,7 +162,7 @@ def display_people(request):
         return render(request, 'Timer/display.html', context)
 
 def clear(request):
-    csv_file_path = 'D:/Codes/Projects/Timer_Website/Timerweb/Timer/Data_time/timer_data.csv'
+    csv_file_path = file_path
     user = request.user.username
     # Read existing data from the CSV file
     with open(csv_file_path, 'r') as file:
