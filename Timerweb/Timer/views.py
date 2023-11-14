@@ -81,7 +81,7 @@ def elapsed_time(request):
     if userName+'start_time' in request.session:
         del request.session[userName+'start_time']
 
-    format_time = "{} minutes and {} seconds".format(*divmod(elapsed_time_seconds-1,60))
+    format_time = "{} minutes and {} seconds".format(*divmod(elapsed_time_seconds,60))
     context = {
         'elapsed_time': format_time,
         'name':name
@@ -118,7 +118,7 @@ def elapsed_time2(request):
     if userName+'start_time' in request.session:
         del request.session[userName+'start_time']
 
-    format_time = "{} minutes and {} seconds".format(*divmod(elapsed_time_seconds-1,60))
+    format_time = "{} minutes and {} seconds".format(*divmod(elapsed_time_seconds,60))
     context = {
         'elapsed_time': format_time,
         'name':name
