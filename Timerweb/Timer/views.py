@@ -141,7 +141,7 @@ def elapsed_time2(request):
 
 def display_people(request):
 
-    csv_file_path = 'D:/Codes/Projects/Timer_Website/Timerweb/Timer/Data_time/timer_data.csv'
+    csv_file_path = file_path
     data_list = []
 
     user = request.user.username
