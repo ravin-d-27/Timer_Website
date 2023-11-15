@@ -174,7 +174,8 @@ def clear(request):
         csv_writer = csv.writer(file)
         csv_writer.writerows(data)
 
-    return redirect('home')
+    message = {"message":"Your Data has been cleared successfully"}
+    return render(request, "Timer/homepage.html", message)
 
 if __name__ == '__main__':
     display_people("hello")

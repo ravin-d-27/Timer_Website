@@ -5,6 +5,11 @@
 {% load static %}
   
   <br>
+  {% if message %}
+    <div class="container alert alert-success" id="alert-container" role="alert">
+      {{ message }}
+    </div>
+  {% endif %}
   <br>
   <br>
 
@@ -39,5 +44,11 @@
       {% endif %}
     </div>
   </div>
+
+  <script>
+    setTimeout(function() {
+      document.getElementById('alert-container').style.display = 'none';
+    }, 4000);
+  </script>
 
 {% endblock %}
