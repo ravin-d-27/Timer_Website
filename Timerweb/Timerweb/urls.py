@@ -38,4 +38,5 @@ urlpatterns = [
     path('start_timer3/<int:timer_id>/', views.start_timer3, name='start_timer3'),
     path('start_timer3a/<int:timer_id>/', views.start_timer3a, name='start_timer3a'),
     path('elapsed_time3/', views.elapsed_time3, name='elapsed_time3'),
+    path('elapsed_time3a/', views.elapsed_time3a, name='elapsed_time3a'),
 ]

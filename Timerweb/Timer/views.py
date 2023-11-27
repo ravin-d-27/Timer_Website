@@ -282,5 +282,42 @@ def elapsed_time3(request):
     return render(request, 'Timer/elapsed_time3.html', context)
 
 
+def elapsed_time3a(request):
+    # Retrieve the start time and user details from the session
+    userName = request.user.username
+    start_time = request.session.get(userName + 'start_time')
+    name = request.session.get(userName + 'name')
+
+    if start_time is None:
+        # Handle the case when the timer hasn't started
+        return HttpResponse("Timer hasn't started!")
+
+    # Calculate the elapsed time
+    current_time = datetime.now().timestamp()
+    elapsed_time_seconds = int(current_time - start_time)
+
+    if userName + 'start_time' in request.session:
+        del request.session[userName + 'start_time']
+
+    format_time = "{} minutes and {} seconds".format(*divmod(elapsed_time_seconds, 60))
+    context = {
+        'elapsed_time': format_time,
+        'name': name,
+    }
+
+    username = request.user.username
+    data = [username, name, format_time, "Debate Session"]
+
+    with open(file_path, 'a', newline='') as file:
+        writer = csv.writer(file)
+        # Write the data
+        writer.writerow(data)
+
+    if userName + 'name' in request.session:
+        del request.session[userName + 'name']
+
+    return render(request, 'Timer/elapsed_time3a.html', context)
+
+
 if __name__ == '__main__':
     display_people("hello")

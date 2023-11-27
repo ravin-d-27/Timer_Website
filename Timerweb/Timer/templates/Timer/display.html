@@ -25,7 +25,7 @@
         {% endfor %}
     </table>
 <br>
-<a class="btn btn-primary" href="#" id="clearButton">Clear this Table</a>
+
 {% elif error3 %}
 <br>
     <table border="1">
@@ -43,7 +43,7 @@
         {% endfor %}
     </table>
 <br>
-<a class="btn btn-primary" href="#" id="clearButton">Clear this Table</a>
+
 {% elif error4 %}
 <br>
     <table border="1">
@@ -62,7 +62,7 @@
     </table>
 <br>
     
-<a class="btn btn-primary" href="#" id="clearButton">Clear this Table</a>
+
 {% elif error5 %}
 <br>
     <table border="1">
@@ -97,7 +97,6 @@
         {% endfor %}
     </table>
 <br>
-<a class="btn btn-primary" href="#" id="clearButton">Clear this Table</a>
 {% elif error6 %}
 <br>
     <table border="1">
@@ -132,7 +131,7 @@
         {% endfor %}
     </table>
 <br>
-<a class="btn btn-primary" href="#" id="clearButton">Clear this Table</a>
+
 {% elif error7 %}
 <br>
     <table border="1">
@@ -168,7 +167,6 @@
     </table>
 <br>
 
-<a class="btn btn-primary" href="#" id="clearButton">Clear this Table</a>
 
 
 
@@ -225,10 +223,11 @@
         {% endfor %}
     </table>
 <br>
+{% endif %}
 
-
-    <a class="btn btn-primary" href="#" id="clearButton">Clear this Table</a>
-    
+{% if not error %}
+<a class="btn btn-primary" href="#" id="clearButton">Clear this Table</a>
+{% endif %}
     <script>
         document.getElementById('clearButton').addEventListener('click', function() {
             var result = confirm("This will delete all records. Click OK to proceed.");
@@ -240,7 +239,7 @@
         });
     </script>
     
-    {% endif %}
+    
 </div>
 
 {% endblock %}
