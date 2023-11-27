@@ -7,8 +7,8 @@
     <br>
     {% if error %}
     <p>{{error}}</p>
-    
-    {% else %}
+
+    {% elif error2 %}
 <br>
     <table border="1">
         <tr>
@@ -16,7 +16,7 @@
             <th>Time</th>
             <th>Type</th>
         </tr>
-        {% for data in data_list %}
+        {% for data in prep %}
         <tr>
             <td>{{ data.1 }}</td>
             <td>{{ data.2 }}</td>
@@ -25,6 +25,208 @@
         {% endfor %}
     </table>
 <br>
+<a class="btn btn-primary" href="#" id="clearButton">Clear this Table</a>
+{% elif error3 %}
+<br>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Time</th>
+            <th>Type</th>
+        </tr>
+        {% for data in table %}
+        <tr>
+            <td>{{ data.1 }}</td>
+            <td>{{ data.2 }}</td>
+            <td>{{ data.3 }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+<br>
+<a class="btn btn-primary" href="#" id="clearButton">Clear this Table</a>
+{% elif error4 %}
+<br>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Time</th>
+            <th>Type</th>
+        </tr>
+        {% for data in deb %}
+        <tr>
+            <td>{{ data.1 }}</td>
+            <td>{{ data.2 }}</td>
+            <td>{{ data.3 }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+<br>
+    
+<a class="btn btn-primary" href="#" id="clearButton">Clear this Table</a>
+{% elif error5 %}
+<br>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Time</th>
+            <th>Type</th>
+        </tr>
+        {% for data in table %}
+        <tr>
+            <td>{{ data.1 }}</td>
+            <td>{{ data.2 }}</td>
+            <td>{{ data.3 }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+<br>
+
+<br>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Time</th>
+            <th>Type</th>
+        </tr>
+        {% for data in prep %}
+        <tr>
+            <td>{{ data.1 }}</td>
+            <td>{{ data.2 }}</td>
+            <td>{{ data.3 }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+<br>
+<a class="btn btn-primary" href="#" id="clearButton">Clear this Table</a>
+{% elif error6 %}
+<br>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Time</th>
+            <th>Type</th>
+        </tr>
+        {% for data in deb %}
+        <tr>
+            <td>{{ data.1 }}</td>
+            <td>{{ data.2 }}</td>
+            <td>{{ data.3 }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+<br>
+
+<br>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Time</th>
+            <th>Type</th>
+        </tr>
+        {% for data in prep %}
+        <tr>
+            <td>{{ data.1 }}</td>
+            <td>{{ data.2 }}</td>
+            <td>{{ data.3 }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+<br>
+<a class="btn btn-primary" href="#" id="clearButton">Clear this Table</a>
+{% elif error7 %}
+<br>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Time</th>
+            <th>Type</th>
+        </tr>
+        {% for data in table %}
+        <tr>
+            <td>{{ data.1 }}</td>
+            <td>{{ data.2 }}</td>
+            <td>{{ data.3 }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+<br>
+
+<br>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Time</th>
+            <th>Type</th>
+        </tr>
+        {% for data in deb %}
+        <tr>
+            <td>{{ data.1 }}</td>
+            <td>{{ data.2 }}</td>
+            <td>{{ data.3 }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+<br>
+
+<a class="btn btn-primary" href="#" id="clearButton">Clear this Table</a>
+
+
+
+
+{% else %}
+
+<br>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Time</th>
+            <th>Type</th>
+        </tr>
+        {% for datax in deb %}
+        <tr>
+            <td>{{ datax.1 }}</td>
+            <td>{{ datax.2 }}</td>
+            <td>{{ datax.3 }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+<br>
+
+<br>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Time</th>
+            <th>Type</th>
+        </tr>
+        {% for datay in prep %}
+        <tr>
+            <td>{{ datay.1 }}</td>
+            <td>{{ datay.2 }}</td>
+            <td>{{ datay.3 }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+<br>
+
+<br>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Time</th>
+            <th>Type</th>
+        </tr>
+        {% for dataz in table %}
+        <tr>
+            <td>{{ dataz.1 }}</td>
+            <td>{{ dataz.2 }}</td>
+            <td>{{ dataz.3 }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+<br>
+
+
     <a class="btn btn-primary" href="#" id="clearButton">Clear this Table</a>
     
     <script>
