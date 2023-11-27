@@ -1,0 +1,49 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<div class="container" align="center">
+
+
+<h1>ToastMasters Debate Speech Session</h1>
+<br>
+<h2>Enter the details to proceed</h2>
+<br>
+  <div class="containers">
+    <form method="post" class="box">
+      {% csrf_token %}
+      <div class="mb-3"><br>
+        <label for="{{ form.name.id_for_label }}" >Name:<br></label>
+        <br>{{ form.name }}
+    </div>
+      <button type="submit" class="btn btn-primary">Start the Timer Now!</button>
+    </form>
+  </div>
+
+
+
+</div>
+
+{% else %}
+
+<br><br>
+<br><br>
+<br><br>
+<div class="containering">
+  <div>
+      <h1 class="error-message" align="center">404 - Page Not Found</h1>
+      <p align="center">Oops! The page you are looking for might be in another castle.</p>
+      <div class="image-container" align="center">
+          <img src="https://www.pngkit.com/png/full/12-129685_sad-face-transparent-png-crying-emoji-transparent-background.png" alt="Sad Mario" width="50px" height="50px">
+      </div>
+      <br>
+      <p align="center"><a class="btn btn-primary" href="/">Home page</a></p>
+  </div>
+</div>
+
+{% endif %}
+
+{% endblock %}

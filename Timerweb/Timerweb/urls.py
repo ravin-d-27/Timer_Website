@@ -34,4 +34,6 @@ urlpatterns = [
     path('display/', views.display_people, name='display'),
     path('clear/', views.clear, name='clear'),
     path('elapsed_time2/', views.elapsed_time2, name='elapsed_time2'),
+    path('new_timer3/', views.new_timer3, name='new_timer3'),
+    path('elapsed_time3/', views.elapsed_time3, name='elapsed_time3'),
 ]

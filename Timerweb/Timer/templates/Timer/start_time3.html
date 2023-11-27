@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+    
+{% block content %}
+<br>
+<br>
+<div class="container" align="center">
+
+    <h1>Name: {{ timer.name }}</h1>
+    <form id="roleForm">
+        <label>
+            <input type="radio" name="role" value="captain" checked> Captain
+        </label>
+        <label>
+            <input type="radio" name="role" value="member"> Member
+        </label>
+    </form>
+
+    <br><br>
+    <div id="timer" style="font-size: 24px;">Elapsed time: 0 seconds</div>
+    <img id="image" src="" style="display: none; max-width: 50%; max-height: 50%;">
+    <br>
+    <button class="btn btn-primary" id="stopButton" onclick="stopTimer()" disabled>Stop and Save</button>
+</div>
+
+<script>
+    let timerInterval;
+    let elapsedTime = 0;
+    let name = "{{ timer.name }}";
+
+    function startTimer() {
+        const timerElement = document.getElementById('timer');
+        const stopButton = document.getElementById('stopButton');
+        const imageElement = document.getElementById('image');
+        const roleForm = document.getElementById('roleForm');
+        const roleRadios = roleForm.elements['role'];
+
+        stopButton.disabled = false;
+
+        timerInterval = setInterval(() => {
+            elapsedTime++;
+            let minutes = Math.floor(elapsedTime / 60);
+            let seconds = elapsedTime % 60;
+
+            let timerText = `Elapsed time: ${minutes} minutes ${seconds} seconds`;
+
+            // Check the selected role and update image accordingly
+            if (roleRadios.value === 'captain') {
+                if (elapsedTime >= 300 && elapsedTime < 360) {
+                    imageElement.src = 'https://th.bing.com/th/id/R.61531cc0ef93e2813e60186627963927?rik=%2bgfPT%2fCpLCAIeQ&riu=http%3a%2f%2fcdn.wallpapersafari.com%2f18%2f85%2f5Jcpsa.jpg&ehk=R343OzbbKsG2cbORgLP%2bg4UuE6W1%2f3vcGs71MKbOSjg%3d&risl=&pid=ImgRaw&r=0';
+                    imageElement.style.display = 'block';
+                } else if (elapsedTime >= 360 && elapsedTime < 420) {
+                    imageElement.src = 'https://www.boredart.com/wp-content/uploads/2017/02/light-yellow.jpg';
+                    imageElement.style.display = 'block';
+                } else if (elapsedTime >= 420) {
+                    imageElement.src = 'https://wallpapertag.com/wallpaper/full/7/c/9/793915-red-color-wallpaper-2560x1600-mobile.jpg';
+                    imageElement.style.display = 'block';
+                }
+            } else if (roleRadios.value === 'member') {
+                // Update image based on member role
+                if (elapsedTime > 60 && elapsedTime <= 90) {
+                    imageElement.src = 'https://th.bing.com/th/id/R.61531cc0ef93e2813e60186627963927?rik=%2bgfPT%2fCpLCAIeQ&riu=http%3a%2f%2fcdn.wallpapersafari.com%2f18%2f85%2f5Jcpsa.jpg&ehk=R343OzbbKsG2cbORgLP%2bg4UuE6W1%2f3vcGs71MKbOSjg%3d&risl=&pid=ImgRaw&r=0'; // Replace with the actual path to your green image
+                    imageElement.style.display = 'block';
+                } else if (elapsedTime > 90 && elapsedTime <= 120) {
+                    imageElement.src = 'https://www.boredart.com/wp-content/uploads/2017/02/light-yellow.jpg'; // Replace with the actual path to your yellow image
+                    imageElement.style.display = 'block';
+                } else if (elapsedTime > 120) {
+                    imageElement.src = 'https://wallpapertag.com/wallpaper/full/7/c/9/793915-red-color-wallpaper-2560x1600-mobile.jpg'; // Replace with the actual path to your red image
+                    imageElement.style.display = 'block';
+                }
+            }
+
+            timerElement.innerHTML = timerText;
+        }, 1000);
+    }
+
+    function stopTimer() {
+        const stopButton = document.getElementById('stopButton');
+        const imageElement = document.getElementById('image');
+
+        stopButton.disabled = true;
+
+        clearInterval(timerInterval);
+
+        // Reset image
+        imageElement.src = '';
+        imageElement.style.display = 'none';
+
+        window.location.href = '/elapsed_time2/';
+    }
+
+    // Start the timer automatically when the page loads
+    startTimer();
+</script>
+
+{% endblock %}
