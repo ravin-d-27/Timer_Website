@@ -176,39 +176,54 @@ def clear(request):
 
     message = {"message":"Your Data has been cleared successfully"}
     return render(request, "Timer/homepage.html", message)
+    
+    
+    
+# views.py
 
-if __name__ == '__main__':
-    display_people("hello")
-    
-    
-    
 def new_timer3(request):
     userName = request.user.username
+
     if request.method == 'POST':
         form = TimerForm(request.POST)
+
         if form.is_valid():
             name = form.cleaned_data['name']
-            request.session[userName+'name'] = name
+            is_captain = form.cleaned_data['is_captain']
+            
+            print(is_captain)
+
+            request.session[userName + 'name'] = name
+
             timer = form.save()
-            return redirect('start_timer3', timer_id=timer.id)
+            
+            if is_captain == True:
+                return redirect('start_timer3', timer_id=timer.id)
+            else:
+                return redirect('start_timer3a', timer_id=timer.id)
     else:
         form = TimerForm()
+
     return render(request, 'Timer/new_timer3.html', {'form': form})
 
 def start_timer3(request, timer_id):
     timer = Timer.objects.get(pk=timer_id)
     userName = request.user.username
-    request.session[userName+'start_time'] = datetime.now().timestamp()
-
+    request.session[userName + 'start_time'] = datetime.now().timestamp()
     return render(request, 'Timer/start_time3.html', {'timer': timer})
 
+def start_timer3a(request, timer_id):
+    timer = Timer.objects.get(pk=timer_id)
+    userName = request.user.username
+    request.session[userName + 'start_time'] = datetime.now().timestamp()
+    return render(request, 'Timer/start_time3a.html', {'timer': timer})
 
 def elapsed_time3(request):
-    # Retrieve the start time from the session
+    # Retrieve the start time and user details from the session
     userName = request.user.username
-    start_time = request.session.get(userName+'start_time')
-    name = request.session.get(userName+'name')
-    
+    start_time = request.session.get(userName + 'start_time')
+    name = request.session.get(userName + 'name')
+
     if start_time is None:
         # Handle the case when the timer hasn't started
         return HttpResponse("Timer hasn't started!")
@@ -217,25 +232,28 @@ def elapsed_time3(request):
     current_time = datetime.now().timestamp()
     elapsed_time_seconds = int(current_time - start_time)
 
-    if userName+'start_time' in request.session:
-        del request.session[userName+'start_time']
+    if userName + 'start_time' in request.session:
+        del request.session[userName + 'start_time']
 
-    format_time = "{} minutes and {} seconds".format(*divmod(elapsed_time_seconds,60))
+    format_time = "{} minutes and {} seconds".format(*divmod(elapsed_time_seconds, 60))
     context = {
         'elapsed_time': format_time,
-        'name':name
+        'name': name,
     }
 
     username = request.user.username
-    data = [username,name,format_time,"Prepared Speech"]
-    
+    data = [username, name, format_time, "Debate Session"]
 
     with open(file_path, 'a', newline='') as file:
         writer = csv.writer(file)
         # Write the data
         writer.writerow(data)
 
-    if userName+'name' in request.session:
-        del request.session[userName+'name']
+    if userName + 'name' in request.session:
+        del request.session[userName + 'name']
 
     return render(request, 'Timer/elapsed_time3.html', context)
+
+
+if __name__ == '__main__':
+    display_people("hello")

@@ -4,7 +4,7 @@
 <br>
 <br>
 <div class="container" align="center">
-For Captains
+For Members
     <h1>Name: {{ timer.name }}</h1>
     <br><br>
     <div id="timer" style="font-size: 24px;">Elapsed time: 0 seconds</div>
@@ -37,16 +37,17 @@ For Captains
 
             // Check the selected role and update image accordingly
             
-                if (elapsedTime >= 120 && elapsedTime < 150) {
-                    imageElement.src = 'https://th.bing.com/th/id/R.61531cc0ef93e2813e60186627963927?rik=%2bgfPT%2fCpLCAIeQ&riu=http%3a%2f%2fcdn.wallpapersafari.com%2f18%2f85%2f5Jcpsa.jpg&ehk=R343OzbbKsG2cbORgLP%2bg4UuE6W1%2f3vcGs71MKbOSjg%3d&risl=&pid=ImgRaw&r=0';
-                    imageElement.style.display = 'block';
-                } else if (elapsedTime >= 150 && elapsedTime < 180) {
-                    imageElement.src = 'https://www.boredart.com/wp-content/uploads/2017/02/light-yellow.jpg';
-                    imageElement.style.display = 'block';
-                } else if (elapsedTime >= 180) {
-                    imageElement.src = 'https://wallpapertag.com/wallpaper/full/7/c/9/793915-red-color-wallpaper-2560x1600-mobile.jpg';
-                    imageElement.style.display = 'block';
-                }
+            if (elapsedTime > 60 && elapsedTime <= 90) {
+                imageElement.src = 'https://th.bing.com/th/id/R.61531cc0ef93e2813e60186627963927?rik=%2bgfPT%2fCpLCAIeQ&riu=http%3a%2f%2fcdn.wallpapersafari.com%2f18%2f85%2f5Jcpsa.jpg&ehk=R343OzbbKsG2cbORgLP%2bg4UuE6W1%2f3vcGs71MKbOSjg%3d&risl=&pid=ImgRaw&r=0'; // Replace with the actual path to your green image
+                imageElement.style.display = 'block';
+            } else if (elapsedTime > 90 && elapsedTime <= 120) {
+                imageElement.src = 'https://www.boredart.com/wp-content/uploads/2017/02/light-yellow.jpg'; // Replace with the actual path to your yellow image
+                imageElement.style.display = 'block';
+            } else if (elapsedTime > 120) {
+                imageElement.src = 'https://wallpapertag.com/wallpaper/full/7/c/9/793915-red-color-wallpaper-2560x1600-mobile.jpg'; // Replace with the actual path to your red image
+                imageElement.style.display = 'block';
+            }
+        
 
             timerElement.innerHTML = timerText;
         }, 1000);

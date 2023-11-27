@@ -13,14 +13,23 @@
 <h2>Enter the details to proceed</h2>
 <br>
   <div class="containers">
-    <form method="post" class="box">
-      {% csrf_token %}
-      <div class="mb-3"><br>
-        <label for="{{ form.name.id_for_label }}" >Name:<br></label>
+
+<form method="post" class="box">
+    {% csrf_token %}
+    <div class="mb-3"><br>
+        <label for="{{ form.name.id_for_label }}">Name:<br></label>
         <br>{{ form.name }}
     </div>
-      <button type="submit" class="btn btn-primary">Start the Timer Now!</button>
-    </form>
+
+    <div class="mb-3">
+        Captain: {{ form.is_captain }} {# Renders the is_captain field #}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Start the Timer Now!</button>
+</form>
+
+
+
   </div>
 
 
