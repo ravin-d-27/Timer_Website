@@ -195,43 +195,12 @@ def new_timer3(request):
         form = TimerForm()
     return render(request, 'Timer/new_timer3.html', {'form': form})
 
-
-def elapsed_time3(request):
-    # Retrieve the start time from the session
+def start_timer3(request, timer_id):
+    timer = Timer.objects.get(pk=timer_id)
     userName = request.user.username
-    start_time = request.session.get(userName+'start_time')
-    name = request.session.get(userName+'name')
-    
-    if start_time is None:
-        # Handle the case when the timer hasn't started
-        return HttpResponse("Timer hasn't started!")
+    request.session[userName+'start_time'] = datetime.now().timestamp()
 
-    # Calculate the elapsed time
-    current_time = datetime.now().timestamp()
-    elapsed_time_seconds = int(current_time - start_time)
-
-    if userName+'start_time' in request.session:
-        del request.session[userName+'start_time']
-
-    format_time = "{} minutes and {} seconds".format(*divmod(elapsed_time_seconds,60))
-    context = {
-        'elapsed_time': format_time,
-        'name':name
-    }
-
-    username = request.user.username
-    data = [username,name,format_time,"Prepared Speech"]
-    
-
-    with open(file_path, 'a', newline='') as file:
-        writer = csv.writer(file)
-        # Write the data
-        writer.writerow(data)
-
-    if userName+'name' in request.session:
-        del request.session[userName+'name']
-
-    return render(request, 'Timer/elapsed_time3.html', context)
+    return render(request, 'Timer/start_time3.html', {'timer': timer})
 
 
 def elapsed_time3(request):
