@@ -6,7 +6,7 @@ from datetime import datetime
 from .forms import TimerForm
 import csv
 
-
+# Change this path according to your Machine
 file_path = '/home/RavinD27Toastmasters/Timer_Website/Timerweb/Timer/Data_time/timer_data.csv'
 
 def homepage(request):
