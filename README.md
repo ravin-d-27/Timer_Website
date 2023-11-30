@@ -4,6 +4,7 @@ This website is designed to perform timer functionality for the sessions conduct
 
 ## Features
 
+- It Has 3 sections to perform different timer functionalities
 - User Login and Signup functionalities.
 - Start and Stop timer functionality.
 - Display of elapsed time.
