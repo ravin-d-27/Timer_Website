@@ -1,0 +1,10 @@
+#design {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    background-color: bisque;
+    padding: 20px;
+}
+
