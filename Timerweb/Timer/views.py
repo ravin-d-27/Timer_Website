@@ -318,6 +318,8 @@ def elapsed_time3a(request):
 
     return render(request, 'Timer/elapsed_time3a.html', context)
 
+def credits(request):
+    return render(request, "Timer/credits.html")
 
 if __name__ == '__main__':
     display_people("hello")
