@@ -6,228 +6,28 @@
     <h1>Timer Data for {{ request.user.username }}</h1>
     <br>
     {% if error %}
-    <p>{{error}}</p>
+        <p>{{ error }}</p>
+    {% endif %}
 
-    {% elif error2 %}
-<br>
-    <table border="1">
-        <tr>
-            <th>Name</th>
-            <th>Time</th>
-            <th>Type</th>
-        </tr>
-        {% for data in prep %}
-        <tr>
-            <td>{{ data.1 }}</td>
-            <td>{{ data.2 }}</td>
-            <td>{{ data.3 }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-<br>
-
-{% elif error3 %}
-<br>
-    <table border="1">
-        <tr>
-            <th>Name</th>
-            <th>Time</th>
-            <th>Type</th>
-        </tr>
-        {% for data in table %}
-        <tr>
-            <td>{{ data.1 }}</td>
-            <td>{{ data.2 }}</td>
-            <td>{{ data.3 }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-<br>
-
-{% elif error4 %}
-<br>
-    <table border="1">
-        <tr>
-            <th>Name</th>
-            <th>Time</th>
-            <th>Type</th>
-        </tr>
-        {% for data in deb %}
-        <tr>
-            <td>{{ data.1 }}</td>
-            <td>{{ data.2 }}</td>
-            <td>{{ data.3 }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-<br>
+    {% if not error %}
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Time Taken</th>
+                <th>Category</th>
+            </tr>
+            {% for name in data_list %}
+                <tr>
+                    <td>{{ name.1 }}</td>
+                    <td>{{ name.2 }}</td>
+                    <td>{{ name.3 }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <a class="btn btn-primary" href="#" id="clearButton">Clear this Table</a>
+    {% endif %}
     
-
-{% elif error5 %}
-<br>
-    <table border="1">
-        <tr>
-            <th>Name</th>
-            <th>Time</th>
-            <th>Type</th>
-        </tr>
-        {% for data in table %}
-        <tr>
-            <td>{{ data.1 }}</td>
-            <td>{{ data.2 }}</td>
-            <td>{{ data.3 }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-<br>
-
-<br>
-    <table border="1">
-        <tr>
-            <th>Name</th>
-            <th>Time</th>
-            <th>Type</th>
-        </tr>
-        {% for data in prep %}
-        <tr>
-            <td>{{ data.1 }}</td>
-            <td>{{ data.2 }}</td>
-            <td>{{ data.3 }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-<br>
-{% elif error6 %}
-<br>
-    <table border="1">
-        <tr>
-            <th>Name</th>
-            <th>Time</th>
-            <th>Type</th>
-        </tr>
-        {% for data in deb %}
-        <tr>
-            <td>{{ data.1 }}</td>
-            <td>{{ data.2 }}</td>
-            <td>{{ data.3 }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-<br>
-
-<br>
-    <table border="1">
-        <tr>
-            <th>Name</th>
-            <th>Time</th>
-            <th>Type</th>
-        </tr>
-        {% for data in prep %}
-        <tr>
-            <td>{{ data.1 }}</td>
-            <td>{{ data.2 }}</td>
-            <td>{{ data.3 }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-<br>
-
-{% elif error7 %}
-<br>
-    <table border="1">
-        <tr>
-            <th>Name</th>
-            <th>Time</th>
-            <th>Type</th>
-        </tr>
-        {% for data in table %}
-        <tr>
-            <td>{{ data.1 }}</td>
-            <td>{{ data.2 }}</td>
-            <td>{{ data.3 }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-<br>
-
-<br>
-    <table border="1">
-        <tr>
-            <th>Name</th>
-            <th>Time</th>
-            <th>Type</th>
-        </tr>
-        {% for data in deb %}
-        <tr>
-            <td>{{ data.1 }}</td>
-            <td>{{ data.2 }}</td>
-            <td>{{ data.3 }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-<br>
-
-
-
-
-
-{% else %}
-
-<br>
-    <table border="1">
-        <tr>
-            <th>Name</th>
-            <th>Time</th>
-            <th>Type</th>
-        </tr>
-        {% for datax in deb %}
-        <tr>
-            <td>{{ datax.1 }}</td>
-            <td>{{ datax.2 }}</td>
-            <td>{{ datax.3 }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-<br>
-
-<br>
-    <table border="1">
-        <tr>
-            <th>Name</th>
-            <th>Time</th>
-            <th>Type</th>
-        </tr>
-        {% for datay in prep %}
-        <tr>
-            <td>{{ datay.1 }}</td>
-            <td>{{ datay.2 }}</td>
-            <td>{{ datay.3 }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-<br>
-
-<br>
-    <table border="1">
-        <tr>
-            <th>Name</th>
-            <th>Time</th>
-            <th>Type</th>
-        </tr>
-        {% for dataz in table %}
-        <tr>
-            <td>{{ dataz.1 }}</td>
-            <td>{{ dataz.2 }}</td>
-            <td>{{ dataz.3 }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-<br>
-{% endif %}
-
-{% if not error %}
-<a class="btn btn-primary" href="#" id="clearButton">Clear this Table</a>
-{% endif %}
     <script>
         document.getElementById('clearButton').addEventListener('click', function() {
             var result = confirm("This will delete all records. Click OK to proceed.");
@@ -238,7 +38,6 @@
             // If the user clicks "Cancel", do nothing
         });
     </script>
-    
     
 </div>
 

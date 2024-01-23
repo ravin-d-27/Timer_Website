@@ -10,6 +10,7 @@ import csv
 file_path = '/home/RavinD27Toastmasters/Timer_Website/Timerweb/Timer/Data_time/timer_data.csv'
 
 
+
 def homepage(request):
 
     userName = request.user.username
@@ -159,35 +160,17 @@ def display_people(request):
         error = {'error':"There are no records"}
         return render(request, 'Timer/display.html', error)
     else:
-        ty = ['Debate Session', 'Table Topic Session', 'Prepared Speech']
+        ty = ['Debate Session', 'Table Topic Session', 'Prepared Speech', "Educational Speech"]
         deb = [i for i in data_list if i[3] == ty[0]]
         table = [i for i in data_list if i[3] == ty[1]]
         prep = [i for i in data_list if i[3] == ty[2]]
-        
-        if deb == [] and table == [] and prep==[]:
-            error3 = {'error1':"There are no records"}
-            return render(request, 'Timer/display.html', error3)
-        elif deb == [] and table == []:
-            error3 = {'error2':"There are no records", 'prep':prep}
-            return render(request, 'Timer/display.html', error3)
-        elif deb == [] and prep==[]:
-            error3 = {'error3':"There are no records", 'table':table}
-            return render(request, 'Timer/display.html', error3)
-        elif table == [] and prep==[]:
-            error3 = {'error4':"There are no records", 'deb': deb}
-            return render(request, 'Timer/display.html', error3)
-        elif deb == [] :
-            error3 = {'error5':"There are no records", 'table':table, 'prep':prep}
-            return render(request, 'Timer/display.html', error3)
-        elif table == []:
-            error3 = {'error6':"There are no records", 'deb': deb, 'prep':prep}
-            return render(request, 'Timer/display.html', error3)
-        elif prep==[]:
-            error3 = {'error7':"There are no records", 'deb': deb, 'table':table}
-            return render(request, 'Timer/display.html', error3)
-        else:
-            context = {'data_list': data_list, 'deb': deb, 'table':table, 'prep':prep}
-            return render(request, 'Timer/display.html', context)
+        edu = [i for i in data_list if i[3] == ty[3]]
+
+        all_names = [i[0] for i in data_list]
+
+        context = {'data_list': data_list, 'deb': deb, 'table': table, 'prep': prep, 'edu': edu, 'all_names': all_names}
+        return render(request, 'Timer/display.html', context)
+
 
 def clear(request):
     csv_file_path = file_path
