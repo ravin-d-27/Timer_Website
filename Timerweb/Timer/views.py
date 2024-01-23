@@ -7,7 +7,9 @@ from .forms import TimerForm
 import csv
 
 # Change this path according to your Machine
-file_path = '/home/RavinD27Toastmasters/Timer_Website/Timerweb/Timer/Data_time/timer_data.csv'
+# file_path = '/home/RavinD27Toastmasters/Timer_Website/Timerweb/Timer/Data_time/timer_data.csv'
+file_path = '/home/ravind27/Desktop/My_Projects_and_Codes/Timer_Website/Timerweb/Timer/Data_time/timer_data.csv'
+
 
 def homepage(request):
 
@@ -320,6 +322,73 @@ def elapsed_time3a(request):
 
 def credits(request):
     return render(request, "Timer/credits.html")
+
+
+
+
+
+
+
+def start_timer_edu(request, timer_id):
+    timer = Timer.objects.get(pk=timer_id)
+    userName = request.user.username
+    request.session[userName+'start_time'] = datetime.now().timestamp()
+
+    return render(request, 'Timer/start_timer_edu.html', {'timer': timer})
+
+def new_timer_edu(request):
+    userName = request.user.username
+    if request.method == 'POST':
+        form = TimerForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            request.session[userName+'name'] = name
+            timer = form.save()
+            return redirect('start_time_edu', timer_id=timer.id)
+    else:
+        form = TimerForm()
+    return render(request, 'Timer/new_timer_edu.html', {'form': form})
+    
+    
+def elapsed_time_edu(request):
+    # Retrieve the start time from the session
+    userName = request.user.username
+    start_time = request.session.get(userName+'start_time')
+    name = request.session.get(userName+'name')
+    
+    if start_time is None:
+        # Handle the case when the timer hasn't started
+        return HttpResponse("Timer hasn't started!")
+
+    # Calculate the elapsed time
+    current_time = datetime.now().timestamp()
+    elapsed_time_seconds = int(current_time - start_time)
+
+    if userName+'start_time' in request.session:
+        del request.session[userName+'start_time']
+
+    format_time = "{} minutes and {} seconds".format(*divmod(elapsed_time_seconds,60))
+    context = {
+        'elapsed_time': format_time,
+        'name':name
+    }
+
+    username = request.user.username
+    data = [username,name,format_time,"Educational Speech"]
+    
+
+    with open(file_path, 'a', newline='') as file:
+        writer = csv.writer(file)
+        # Write the data
+        writer.writerow(data)
+
+    if userName+'name' in request.session:
+        del request.session[userName+'name']
+
+    return render(request, 'Timer/elapsed_time_edu.html', context)
+
+
+
 
 if __name__ == '__main__':
     display_people("hello")

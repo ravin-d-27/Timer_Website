@@ -40,4 +40,8 @@ urlpatterns = [
     path('elapsed_time3/', views.elapsed_time3, name='elapsed_time3'),
     path('elapsed_time3a/', views.elapsed_time3a, name='elapsed_time3a'),
     path('credits/', views.credits, name='credits'),
+    
+    path('new_timer_edu/', views.new_timer_edu, name='new_timer_edu'),
+    path('start_timer_edu/<int:timer_id>/', views.start_timer_edu, name='start_time_edu'),
+    path('elapsed_time_edu/', views.elapsed_time_edu, name='elapsed_time_edu'),
 ]
